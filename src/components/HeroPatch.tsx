@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function HeroPatch() {
   return (
     <div className='p-3 md:p-6 bg-white bg-opacity-15 rounded-lg overflow-hidden w-full'>
-        <h1 className='font-bold text-xl'>Hero in patch</h1>
+        <h1 className='font-bold text-xl text-white'>Hero in patch</h1>
         <div className='mt-3 '>
                 <ScrollArea className="w-full pb-6 ">
                     <div className='flex justify-between gap-6 '>
