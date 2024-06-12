@@ -1,5 +1,7 @@
 import React from 'react'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
+import { heroPatch } from '@/lib/heroPatch'
+import Image from 'next/image'
 
 export default function HeroPatch() {
   return (
@@ -9,8 +11,16 @@ export default function HeroPatch() {
                 <ScrollArea className="w-full pb-6 ">
                     <div className='flex justify-between gap-6 '>
                         {
-                            Array(15).fill(null).map((_, i) =>(
-                                <div key={i} className='min-w-14 w-14 h-14 bg-white rounded-lg  hover:cursor-pointer'></div>
+                            heroPatch.map((item, i) =>(
+                                <div key={i} className='min-w-14 w-14 h-14 bg-white rounded-lg  hover:cursor-pointer'>
+                                    <img
+                                     alt={item.heroid}
+                                     width={150}
+                                     height={150}
+                                     src={item.key}
+                                     className='w-full h-full object-cover rounded-lg'
+                                    />
+                                </div>
                             ))
                         }
 
