@@ -1,45 +1,173 @@
 'use client';
 import React, { useState } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Button } from './ui/button';
+import { heros } from '@/lib/hero';
+import { Input } from './ui/input';
 
-export default function Draft() {
-  const [firstBan,setFirstBan] = useState([]);
+interface Hero {
+    name : string |null,
+    heroid : string |null,
+    key : string |null
+}
+
+export default function Draft() { 
+  const [allHeros,setAllHeros] = useState(heros);
+  const [index,setIndex] = useState(0);
+  const [firstBanned, setFirstBanned] = useState<Hero[]>([
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null}
+  ]);
+  const [firstPick, setFirstPick] = useState<Hero[]>([
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null}
+  ]);
+  const [secondBanned, setsecondBanned] = useState<Hero[]>([
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null}
+  ]);
+  const [secondPick, setsecondPick] = useState<Hero[]>([
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null},
+    {name : null , heroid : null, key:null}
+  ]);
+
+  const [search,setSearch] = useState('');
+  const [isOpen , setisOpen] = useState(false);
+  const [startsWith,setStartWith] = useState('');
+  
+  
+  const closeDailog = (payload:string,hero:Hero)=>{
+    if (payload.startsWith('firstBanned')) {
+        setFirstBanned((prevFirstBan:Hero[])=>{
+            const newItems = [...prevFirstBan];
+            newItems.splice(index, 1, hero);
+            return newItems;
+       })
+    }  
+    if (payload.startsWith('firstPick')) {
+        setFirstPick((prevFirstBan:Hero[])=>{
+            const newItems = [...prevFirstBan];
+            newItems.splice(index, 1, hero);
+            return newItems;
+       })
+    }  
+    if (payload.startsWith('secondBanned')) {
+        setsecondBanned((prevFirstBan:Hero[])=>{
+            const newItems = [...prevFirstBan];
+            newItems.splice(index, 1, hero);
+            return newItems;
+       })
+    }  
+    if (payload.startsWith('secondPick')) {
+        setsecondPick((prevFirstBan:Hero[])=>{
+            const newItems = [...prevFirstBan];
+            newItems.splice(index, 1, hero);
+            return newItems;
+       })
+    }   
+    setisOpen(!isOpen);
+    setSearch('');
+  }
+
+  const openDailog = (index:number,startsWith:string)=>{
+    setStartWith(startsWith);
+    setisOpen(!isOpen);
+    setIndex(index);
+  }
+  
   return (
     <div className='columns-1 md:columns-2 space-y-6 w-full'>
-        <div className='p-3 md:p-6 bg-white bg-opacity-15 rounded-lg overflow-hidden'>
-            <h1 className='font-bold text-xl text-white'>Phase One</h1>
-            <div className='mt-3'>
-                <h2 className='font-medium text-white'>Pick Hero</h2>
-                <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
+        <Dialog open={isOpen}>
+        <DialogContent>
+            <DialogHeader>
+            <DialogTitle>Choose Hero</DialogTitle>
+            <DialogDescription>
+                <div className='py-3'>
+                    <Input type="text" onChange={(e)=>setSearch(e.target.value)} defaultValue={search} placeholder="Search..." />
+                </div>
+                <div className='flex gap-9 flex-wrap py-3'>
                     {
-                        Array(5).fill(null).map((_, i) =>(
-                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'></div>
+                        search != "" ? 
+                        allHeros.filter((x)=>x.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())).map((item,i)=>(
+                            <div onClick={()=>closeDailog(startsWith,item)} key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                     alt={item.heroid}
+                                     width={150}
+                                     height={150}
+                                     src={item.key}
+                                     className='w-full h-full object-cover rounded-lg'
+                                    />  
+                            </div>
+                        ))    
+                        :
+                        allHeros.slice(0,5).map((item, i) =>(
+                            <div onClick={()=>closeDailog(startsWith,item)} key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                     alt={item.heroid}
+                                     width={150}
+                                     height={150}
+                                     src={item.key}
+                                     className='w-full h-full object-cover rounded-lg'
+                                    />  
+                            </div>
                         ))
                     }
                 </div>
-                <div>
-
-                <Dialog>
-                    <DialogTrigger>Open</DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                    <DialogTitle>Are you absolutely sure?</DialogTitle>
-                    <DialogDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
-                    </DialogDescription>
-                    </DialogHeader>
-                </DialogContent>
-                </Dialog>
+            </DialogDescription>
+            <DialogFooter>
+                <div className='flex gap-3 mt-3'>
+                    <Button onClick={()=>openDailog(0,'firstBanned')} >Close</Button>
                 </div>
-
-            </div>
+            </DialogFooter>
+            </DialogHeader>
+        </DialogContent>
+        </Dialog>
+        <div className='p-3 md:p-6 bg-white bg-opacity-15 rounded-lg overflow-hidden'>
+            <h1 className='font-bold text-xl text-white'>Phase One</h1>
             <div className='mt-3'>
                 <h2 className='font-medium text-white'>Ban Hero</h2>
                 <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
                     {
-                        Array(5).fill(null).map((_, i) =>(
-                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'></div>
+                        firstBanned.map((item:Hero, i) =>(
+                            <div onClick={()=>openDailog(i,'firstBanned')} key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                     alt={item.heroid || 'hero'}
+                                     width={150}
+                                     height={150}
+                                     src={item.key || '/favicon.ico'}
+                                     className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div className='mt-3'>
+                <h2 className='font-medium text-white'>Pick Hero</h2>
+                <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
+                    {
+                        firstPick.map((item:Hero, i) =>(
+                            <div onClick={()=>openDailog(i,'firstPick')} key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                        alt={item.heroid || 'hero'}
+                                        width={150}
+                                        height={150}
+                                        src={item.key || '/favicon.ico'}
+                                        className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
                         ))
                     }
                 </div>
@@ -66,39 +194,39 @@ export default function Draft() {
             </div>
         </div>
         <div className='p-3 md:p-6 bg-white bg-opacity-15 rounded-lg overflow-hidden'>
-            <h1 className='font-bold text-xl text-white'>Phase One</h1>
-            <div className='mt-3'>
-                <h2 className='font-medium text-white'>Pick Hero</h2>
-                <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
-                    {
-                        Array(5).fill(null).map((_, i) =>(
-                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'></div>
-                        ))
-                    }
-                </div>
-                <div>
-
-                <Dialog>
-                    <DialogTrigger>Open</DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                    <DialogTitle>Are you absolutely sure?</DialogTitle>
-                    <DialogDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
-                    </DialogDescription>
-                    </DialogHeader>
-                </DialogContent>
-                </Dialog>
-                </div>
-
-            </div>
+            <h1 className='font-bold text-xl text-white'>Phase Two</h1>
             <div className='mt-3'>
                 <h2 className='font-medium text-white'>Ban Hero</h2>
                 <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
                     {
-                        Array(5).fill(null).map((_, i) =>(
-                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'></div>
+                        secondBanned.map((item:Hero, i) =>(
+                            <div onClick={()=>openDailog(i,'secondBanned')} key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                     alt={item.heroid || 'hero'}
+                                     width={150}
+                                     height={150}
+                                     src={item.key || '/favicon.ico'}
+                                     className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div className='mt-3'>
+                <h2 className='font-medium text-white'>Pick Hero</h2>
+                <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
+                    {
+                        secondPick.map((item:Hero, i) =>(
+                            <div onClick={()=>openDailog(i,'secondPick')} key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                        alt={item.heroid || 'hero'}
+                                        width={150}
+                                        height={150}
+                                        src={item.key || '/favicon.ico'}
+                                        className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
                         ))
                     }
                 </div>
