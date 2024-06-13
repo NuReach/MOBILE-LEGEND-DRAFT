@@ -170,4 +170,239 @@ export const HeroDetail = [
             "91","36"
         ]
     },
+    {
+        heroid : "112",
+        counter : [
+            "59"
+        ],
+        compatability :[
+            "72"
+        ]
+    },
+    {
+        heroid : "102",
+        counter : [
+            "23"
+        ],
+        compatability :[
+            "58"
+        ]
+    },
+    {
+        heroid : "76",
+        counter : [
+            "104"
+        ],
+        compatability :[
+            "58"
+        ]
+    },
+    {
+        heroid : "62",
+        counter : [
+            "17","47"
+        ],
+        compatability :[
+            "109"
+        ]
+    },
+    {
+        heroid : "55",
+        counter : [
+            "59"
+        ],
+        compatability :[
+            "47","109"
+        ]
+    },
+    {
+        heroid : "14",
+        counter : [
+            "88","99"
+        ],
+        compatability :[
+            "37"
+        ]
+    },
+    {
+        heroid : "116",
+        counter : [
+            "59","81"
+        ],
+        compatability :[
+            "55","48"
+        ]
+    },
+    {
+        heroid : "106",
+        counter : [
+            "89","73"
+        ],
+        compatability :[
+            "9"
+        ]
+    },
+    {
+        heroid : "103",
+        counter : [
+            "83","97"
+        ],
+        compatability :[
+            "102","101"
+        ]
+    },
+    {
+        heroid : "98",
+        counter : [
+            "115","47"
+        ],
+        compatability :[
+            "39","8"
+        ]
+    },
+    {
+        heroid : "97",
+        counter : [
+            "80","104"
+        ],
+        compatability :[
+            "110","112"
+        ]
+    },
+    {
+        heroid : "95",
+        counter : [
+            "101","104"
+        ],
+        compatability :[
+            "38","115"
+        ]
+    },
+    {
+        heroid : "88",
+        counter : [
+            "89","17"
+        ],
+        compatability :[
+            "120","124"
+        ]
+    },
+    {
+        heroid : "85",
+        counter : [
+            "81","59"
+        ],
+        compatability :[
+            "10","62"
+        ]
+    },
+    {
+        heroid : "83",
+        counter : [
+            "99","87"
+        ],
+        compatability :[
+            "110","58"
+        ]
+    },
+    {
+        heroid : "80",
+        counter : [
+            "85"
+        ],
+        compatability :[
+            "11","49"
+        ]
+    },
+    {
+        heroid : "72",
+        counter : [
+            "120","88"
+        ],
+        compatability :[
+            "14","48"
+        ]
+    },
+    {
+        heroid : "39",
+        counter : [
+            "97","102"
+        ],
+        compatability :[
+            "52","38"
+        ]
+    },
+    {
+        heroid : "37",
+        counter : [
+            "88","106"
+        ],
+        compatability :[
+            "110","101"
+        ]
+    },
+    {
+        heroid : "29",
+        counter : [
+            "108","62"
+        ],
+        compatability :[
+            "75","52"
+        ]
+    },
+    {
+        heroid : "29",
+        counter : [
+            "108","62"
+        ],
+        compatability :[
+            "75","52"
+        ]
+    },
+    {
+        heroid : "28",
+        counter : [
+            "99","82"
+        ],
+        compatability :[
+            "104","98"
+        ]
+    },
+    {
+        heroid : "26",
+        counter : [
+            "97","83"
+        ],
+        compatability :[
+            "104","11"
+        ]
+    },
+    {
+        heroid : "11",
+        counter : [
+            "99","76"
+        ],
+        compatability :[
+            "6","96"
+        ]
+    },
+    {
+        heroid : "120",
+        counter : [
+            "83","14"
+        ],
+        compatability :[
+            "88","19"
+        ]
+    },
+    {
+        heroid : "120",
+        counter : [
+            "83","14"
+        ],
+        compatability :[
+            "88","19"
+        ]
+    },
+    
 ]
