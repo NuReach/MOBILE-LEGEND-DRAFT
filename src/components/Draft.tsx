@@ -1,14 +1,22 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button } from './ui/button';
 import { heros } from '@/lib/hero';
 import { Input } from './ui/input';
+import { HeroDetail } from '@/lib/heroDetail';
+import { getHero } from '@/app/Utils/utils';
 
 interface Hero {
     name : string |null,
     heroid : string |null,
     key : string |null
+}
+
+interface HeroDetailSchema {
+    heroid: string;
+    counter: string[];
+    compatability: string[];
 }
 
 export default function Draft() { 
@@ -42,6 +50,12 @@ export default function Draft() {
     {name : null , heroid : null, key:null},
     {name : null , heroid : null, key:null}
   ]);
+
+  const [firstExpectation, setFirstExpectation] = useState<string[]>([]);
+  const [firstCompatibility, setFirstCompatibility] = useState<string[]>([]);
+  const [firstCounter, setFirstCounter] = useState<string[]>([]);
+
+
 
   const [search,setSearch] = useState('');
   const [isOpen , setisOpen] = useState(false);
@@ -86,6 +100,24 @@ export default function Draft() {
     setisOpen(!isOpen);
     setIndex(index);
   }
+
+  useEffect(() => {
+    const heroIds = firstBanned.filter((item)=>item.heroid != null).map(item => item.heroid);
+    const filteredItems = HeroDetail.filter(item => heroIds.includes(item.heroid));
+    const firstExpectation = filteredItems.flatMap((item)=>item.counter);
+    setFirstExpectation(firstExpectation);
+  }, [firstBanned]);
+
+  useEffect(() => {
+    const heroIds = firstPick.filter((item)=>item.heroid != null).map(item => item.heroid);
+    const filteredItems = HeroDetail.filter(item => heroIds.includes(item.heroid));
+    const firstExpectation = filteredItems.flatMap((item)=>item.compatability);
+    const firstCounter = filteredItems.flatMap((item)=>item.counter);
+    setFirstCompatibility(firstExpectation);
+    setFirstCounter(firstCounter);
+  }, [firstPick]);
+
+
   
   return (
     <div className='columns-1 md:columns-2 space-y-6 w-full'>
@@ -173,21 +205,55 @@ export default function Draft() {
                 </div>
             </div>
             <div className='mt-3'>
-                <h2 className='font-medium text-white'>Expectaion</h2>
+                <h2 className='font-medium text-white'>They might play</h2>
                 <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
                     {
-                        Array(10).fill(null).map((_, i) =>(
-                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'></div>
+                        firstExpectation.map((item, i) =>(
+                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                    alt={getHero(item)?.heroid || 'hero'}
+                                    width={150}
+                                    height={150}
+                                    src={getHero(item)?.key || '/favicon.ico'}
+                                    className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
                         ))
                     }
                 </div>
             </div>
             <div className='mt-3'>
-                <h2 className='font-medium text-white'>Counter</h2>
+                <h2 className='font-medium text-white'>Pick Combo</h2>
                 <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
                     {
-                        Array(10).fill(null).map((_, i) =>(
-                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'></div>
+                        firstCompatibility.map((item, i) =>(
+                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                    alt={ getHero(item)?.heroid || 'hero'}
+                                    width={150}
+                                    height={150}
+                                    src={getHero(item)?.key || '/favicon.ico'}
+                                    className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div className='mt-3'>
+                <h2 className='font-medium text-white'>Pick Counter</h2>
+                <div className='mt-3 columns-3 sm:columns-5 space-y-3'>
+                    {
+                        firstCounter.map((item, i) =>(
+                            <div key={i} className='w-14 h-14 bg-white rounded-lg overflow-hidden hover:cursor-pointer'>
+                                <img
+                                    alt={ getHero(item)?.heroid || 'hero'}
+                                    width={150}
+                                    height={150}
+                                    src={getHero(item)?.key || '/favicon.ico'}
+                                    className='w-full h-full object-cover rounded-lg'
+                                />  
+                            </div>
                         ))
                     }
                 </div>
