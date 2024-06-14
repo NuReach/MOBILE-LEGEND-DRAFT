@@ -484,4 +484,139 @@ export const HeroDetail = [
             "9","4"
         ]
     },
+    {
+        heroid : "12",
+        counter : [
+            "89"
+        ],
+        compatability :[
+            "44"
+        ]
+    },
+    {
+        heroid : "119",
+        counter : [
+            "6"
+        ],
+        compatability :[
+            "107"
+        ]
+    },
+    {
+        heroid : "115",
+        counter : [
+            "44"
+        ],
+        compatability :[
+            "92"
+        ]
+    },
+    {
+        heroid : "110",
+        counter : [
+            "83","76"
+        ],
+        compatability :[
+            "118"
+        ]
+    },
+    {
+        heroid : "91",
+        counter : [
+            "99","117"
+        ],
+        compatability :[
+            "88","87"
+        ]
+    },
+    {
+        heroid : "86",
+        counter : [
+            "82","4"
+        ],
+        compatability :[
+            "19"
+        ]
+    },
+    {
+        heroid : "81",
+        counter : [
+            "20"
+        ],
+        compatability :[
+            "48"
+        ]
+    },
+    {
+        heroid : "73",
+        counter : [
+            "44","83"
+        ],
+        compatability :[
+            "68","37"
+        ]
+    },
+    {
+        heroid : "52",
+        counter : [
+            "110","48"
+        ],
+        compatability :[
+            "92","117"
+        ]
+    },
+    {
+        heroid : "46",
+        counter : [
+            "109","24"
+        ],
+        compatability :[
+            "124","73"
+        ]
+    },
+    {
+        heroid : "38",
+        counter : [
+            "104","124"
+        ],
+        compatability :[
+            "105","73"
+        ]
+    },
+    {
+        heroid : "36",
+        counter : [
+            "46","20"
+        ],
+        compatability :[
+            "40"
+        ]
+    },
+    {
+        heroid : "68",
+        counter : [
+            "118","59"
+        ],
+        compatability :[
+            "4","44"
+        ]
+    },
+    {
+        heroid : "23",
+        counter : [
+            "99"
+        ],
+        compatability :[
+            "117"
+        ]
+    },
+    {
+        heroid : "5",
+        counter : [
+            "20","46"
+        ],
+        compatability :[
+            "22","14"
+        ]
+    },
 ]
