@@ -396,13 +396,92 @@ export const HeroDetail = [
         ]
     },
     {
-        heroid : "120",
+        heroid : "84",
         counter : [
-            "83","14"
+            "83","104"
         ],
         compatability :[
-            "88","19"
+            "55","100"
         ]
     },
-    
+    {
+        heroid : "75",
+        counter : [
+            "20","101"
+        ],
+        compatability :[
+            "4"
+        ]
+    },
+    {
+        heroid : "63",
+        counter : [
+            "121","83"
+        ],
+        compatability :[
+            "9","117"
+        ]
+    },
+    {
+        heroid : "56",
+        counter : [
+            "101","83"
+        ],
+        compatability :[
+            "49","54"
+        ]
+    },
+    {
+        heroid : "56",
+        counter : [
+            "101","83"
+        ],
+        compatability :[
+            "49","54"
+        ]
+    },
+    {
+        heroid : "51",
+        counter : [
+        ],
+        compatability :[
+            "21","72"
+        ]
+    },
+    {
+        heroid : "47",
+        counter : [
+            "11","104"
+        ],
+        compatability :[
+            "55","62"
+        ]
+    },
+    {
+        heroid : "30",
+        counter : [
+            "59","82"
+        ],
+        compatability :[
+            "44","98"
+        ]
+    },
+    {
+        heroid : "24",
+        counter : [
+            "119","43"
+        ],
+        compatability :[
+            "9","4"
+        ]
+    },
+    {
+        heroid : "24",
+        counter : [
+            "119","43"
+        ],
+        compatability :[
+            "9","4"
+        ]
+    },
 ]
