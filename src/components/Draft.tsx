@@ -19,6 +19,7 @@ interface HeroDetailSchema {
     compatability: string[];
 }
 
+
 export default function Draft() { 
   const [allHeros,setAllHeros] = useState(heros);
   const [index,setIndex] = useState(0);
@@ -105,16 +106,22 @@ export default function Draft() {
     const heroIds = firstBanned.filter((item)=>item.heroid != null).map(item => item.heroid);
     const filteredItems = HeroDetail.filter(item => heroIds.includes(item.heroid));
     const firstExpectation = filteredItems.flatMap((item)=>item.counter);
-    setFirstExpectation(firstExpectation);
+    const distinctSet = new Set(firstExpectation);
+    const distinctArray = Array.from(distinctSet);
+    setFirstExpectation(distinctArray);
   }, [firstBanned]);
 
   useEffect(() => {
     const heroIds = firstPick.filter((item)=>item.heroid != null).map(item => item.heroid);
     const filteredItems = HeroDetail.filter(item => heroIds.includes(item.heroid));
-    const firstExpectation = filteredItems.flatMap((item)=>item.compatability);
+    const firstCompatibility = filteredItems.flatMap((item)=>item.compatability);
+    const distinctSetFirstCap = new Set(firstCompatibility);
+    const distinctArrayFirstCap = Array.from(distinctSetFirstCap);
+    setFirstCompatibility(distinctArrayFirstCap);
     const firstCounter = filteredItems.flatMap((item)=>item.counter);
-    setFirstCompatibility(firstExpectation);
-    setFirstCounter(firstCounter);
+    const distinctSetFirstCounter = new Set(firstCounter);
+    const distinctArrayFirstCounter= Array.from(distinctSetFirstCounter);
+    setFirstCounter(distinctArrayFirstCounter);
   }, [firstPick]);
 
 
